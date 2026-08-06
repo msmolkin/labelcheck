@@ -1,0 +1,55 @@
+# labelcheck TTL purge — deletes batches older than LABELCHECK_PURGE_TTL_MIN (60) and
+# every uploaded image and crop belonging to them. Driven by labelcheck-purge.timer every
+# 15 minutes so the "deleted every hour" promise has at most 15 minutes of slack.
+#
+# Installed as /etc/systemd/system/labelcheck-purge.service, alongside its timer.
+# The app also purges lazily on batch creation, so a stopped timer cannot silently retain
+# uploads while traffic continues.
+
+[Unit]
+Description=labelcheck — purge expired batches and uploads
+After=labelcheck.service
+
+[Service]
+Type=oneshot
+
+# Same transient user as labelcheck.service (see the comment there): both units must map to
+# the same UID or systemd would chown the shared StateDirectory on each purge run.
+DynamicUser=yes
+User=labelcheck
+StateDirectory=labelcheck
+
+WorkingDirectory=/opt/labelcheck
+
+EnvironmentFile=-/etc/labelcheck.env
+Environment=LABELCHECK_DATA_DIR=/var/lib/labelcheck
+Environment=OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+
+ExecStart=/opt/labelcheck/venv/bin/python -m app.purge
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectProc=invisible
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+# The purge imports the same app package as the service, which pulls in ONNX Runtime.
+# See labelcheck.service for why W+X memory must stay permitted.
+MemoryDenyWriteExecute=no
+SystemCallFilter=@system-service
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+UMask=0077
+
+MemoryMax=512M
+CPUQuota=100%
+
+IPAddressDeny=any
+IPAddressAllow=localhost

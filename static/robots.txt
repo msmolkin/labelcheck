@@ -1,0 +1,4 @@
+# A prototype of a government workflow running on personal infrastructure.
+# It should not be indexed, and it holds no content worth crawling.
+User-agent: *
+Disallow: /

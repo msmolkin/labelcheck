@@ -1,0 +1,71 @@
+# labelcheck — TTB alcohol-label verification prototype
+#
+# Installed as /etc/systemd/system/labelcheck.service.
+# The box is shared with ~78 static apps, so this unit is written to be strictly contained:
+# it owns /opt/labelcheck (read-only to it) and /var/lib/labelcheck (its only writable path),
+# and it cannot open an outbound socket.
+
+[Unit]
+Description=labelcheck — TTB label verification prototype
+Documentation=https://labelcheck.apps.smolkin.org/healthz
+After=network.target
+
+[Service]
+Type=exec
+
+# DynamicUser gives a transient, unprivileged UID with no home, no shell and no read path
+# into /root or any other app's directory. User= is set explicitly so that the purge unit
+# can be allocated the SAME transient user and therefore share StateDirectory= without
+# systemd re-chowning the state directory out from under the running service.
+DynamicUser=yes
+User=labelcheck
+StateDirectory=labelcheck
+
+WorkingDirectory=/opt/labelcheck
+
+# Order matters: systemd applies these in file order and later settings win. The tuned
+# resolution knobs written by deploy/bench-on-box.sh live in /etc/labelcheck.env; the
+# settings below it are the ones the deployment fixes and the bench must not move.
+EnvironmentFile=-/etc/labelcheck.env
+Environment=LABELCHECK_DATA_DIR=/var/lib/labelcheck
+Environment=LABELCHECK_PORT=8712
+Environment=OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
+
+ExecStart=/opt/labelcheck/venv/bin/uvicorn app.api:app --host 127.0.0.1 --port 8712 \
+          --workers 1 --no-access-log
+Restart=on-failure
+RestartSec=2
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectProc=invisible
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+# ONNX Runtime maps executable pages for its kernels; enabling MemoryDenyWriteExecute
+# stops the OCR engine from initialising. Deliberate, measured, and not a leftover.
+MemoryDenyWriteExecute=no
+SystemCallFilter=@system-service
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+UMask=0077
+
+MemoryMax=1500M
+CPUQuota=150%
+
+# The headline control: the offline requirement is kernel-enforced, not merely claimed.
+# Nothing in the dependency tree can reach the network even if it tries (rapidocr has a
+# model-download path that would fire if a model file were ever missing). localhost is
+# allowed so nginx can proxy to 127.0.0.1:8712.
+IPAddressDeny=any
+IPAddressAllow=localhost
+
+[Install]
+WantedBy=multi-user.target

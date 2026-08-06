@@ -1,0 +1,16 @@
+{
+  "name": "labelcheck-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build tooling for the labelcheck frontend. There are no runtime dependencies: the browser loads static/dist/app.js and static/dist/app.css from the same origin and nothing else.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.1",
+    "typescript": "7.0.2"
+  }
+}

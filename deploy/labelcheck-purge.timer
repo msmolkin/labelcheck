@@ -1,0 +1,22 @@
+# Runs labelcheck-purge.service every 15 minutes.
+#
+# 15 and not 60: the retention promise on the page is "deleted every hour" against a
+# 60-minute TTL, so a quarter-hourly sweep bounds the real worst case at 75 minutes.
+# An hourly sweep could leave an expired batch on disk for 119 minutes.
+#
+# Installed as /etc/systemd/system/labelcheck-purge.timer, alongside its service.
+
+[Unit]
+Description=labelcheck — purge expired batches every 15 minutes
+
+[Timer]
+Unit=labelcheck-purge.service
+OnBootSec=5min
+OnUnitActiveSec=15min
+AccuracySec=1min
+# Only takes effect for calendar timers; kept so that a future switch to OnCalendar=
+# retains catch-up after downtime rather than silently losing it.
+Persistent=true
+
+[Install]
+WantedBy=timers.target

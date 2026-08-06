@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>labelcheck — alcohol label health warning verification</title>
+    <meta
+      name="description"
+      content="Checks photographs of alcohol beverage labels against the health warning statement required by 27 CFR Part 16 and against the brand, class/type, alcohol content and net contents on the application record."
+    />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#14532d" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="labelcheck" />
+    <meta
+      property="og:description"
+      content="Alcohol beverage label verification prototype: 27 CFR Part 16 health warning checks plus application-record matching."
+    />
+    <meta property="og:image" content="/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og.png" />
+    <link rel="stylesheet" href="/assets/app.css" />
+    <script src="/assets/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the main content</a>
+
+    <header class="page-header">
+      <h1>labelcheck</h1>
+      <p class="lede">
+        Upload photographs of alcohol beverage labels. Each one is checked against the health
+        warning statement required by
+        <abbr title="Title 27, Code of Federal Regulations, Part 16">27 CFR Part 16</abbr> and,
+        when you supply an application record, against the brand, class/type, alcohol content
+        and net contents on that record.
+      </p>
+      <p class="retention">
+        Uploaded images and results are automatically deleted every hour. This prototype runs on
+        the developer's personal infrastructure.
+      </p>
+    </header>
+
+    <main id="main">
+      <p class="banner" id="error-banner" role="alert" hidden></p>
+
+      <section class="card" aria-labelledby="step-images">
+        <h2 id="step-images">1. Choose label images</h2>
+        <div class="dropzone" id="dropzone">
+          <input
+            class="file-input"
+            type="file"
+            id="file-input"
+            name="images"
+            multiple
+            accept="image/*"
+          />
+          <label class="button button-secondary" for="file-input">Choose label images</label>
+          <p class="hint">
+            JPEG, PNG or WebP, up to 12 MB each. You can also drag files onto this box.
+          </p>
+          <p class="hint" id="file-summary" aria-live="polite">No images chosen yet.</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="step-records">
+        <h2 id="step-records">2. Application records (optional)</h2>
+        <p class="hint">
+          A CSV export of the application records to compare each label against. Without it the
+          four Part 16 warning checks still run; the four record checks are reported as not
+          applicable. Expected header row:
+        </p>
+        <p class="code">record_id,brand_name,class_type,alcohol_content,net_contents</p>
+        <p class="hint">
+          <a href="/api/records-template.csv" download>Download a blank records template</a>
+        </p>
+        <p class="hint">
+          An image is paired with a record when its filename matches the record's
+          <span class="nowrap">record_id</span> — <span class="nowrap">label_001.jpg</span>
+          pairs with <span class="nowrap">label_001</span>. An optional
+          <span class="nowrap">filename</span> column pairs them explicitly.
+        </p>
+        <input
+          class="file-input"
+          type="file"
+          id="records-input"
+          name="records"
+          accept=".csv,text/csv"
+        />
+        <label class="button button-secondary" for="records-input">Choose records CSV</label>
+        <p class="hint" id="records-summary" aria-live="polite">No records file chosen.</p>
+      </section>
+
+      <section class="card" aria-labelledby="step-run">
+        <h2 id="step-run">3. Check the labels</h2>
+        <div class="row-actions">
+          <button class="button button-primary" id="start-button" type="button" disabled>
+            Check labels
+          </button>
+          <button class="button button-secondary" id="sample-button" type="button">
+            Load sample batch (8 images)
+          </button>
+        </div>
+        <p class="hint">
+          <button class="link-button" id="sample-all-button" type="button">
+            Load the full 22-image test set instead
+          </button>
+        </p>
+      </section>
+
+      <section class="card" aria-labelledby="progress-heading" id="progress-card" hidden>
+        <h2 id="progress-heading">Progress</h2>
+        <div id="progress-region" aria-live="polite">
+          <p class="progress-text" id="progress-text">Starting…</p>
+          <progress id="progress-bar" max="1" value="0">0%</progress>
+          <p class="hint" id="progress-eta"></p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="results-heading" id="results-card" hidden>
+        <h2 id="results-heading">Results</h2>
+        <div class="row-actions" role="group" aria-label="Filter results">
+          <button class="button button-filter" type="button" data-filter="all" aria-pressed="true">
+            All
+          </button>
+          <button
+            class="button button-filter"
+            type="button"
+            data-filter="amber"
+            aria-pressed="false"
+          >
+            Needs review
+          </button>
+          <button
+            class="button button-filter"
+            type="button"
+            data-filter="red"
+            aria-pressed="false"
+          >
+            Rejected
+          </button>
+          <a class="button button-secondary" id="export-link" href="#" download hidden>
+            Export results as CSV
+          </a>
+        </div>
+        <table class="results">
+          <caption class="visually-hidden">
+            One row per label image, with the machine verdict and the individual checks.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Label</th>
+              <th scope="col">File</th>
+              <th scope="col">Result</th>
+              <th scope="col">Checks</th>
+              <th scope="col">Time</th>
+              <th scope="col"><span class="visually-hidden">Review</span></th>
+            </tr>
+          </thead>
+          <tbody id="results-body"></tbody>
+        </table>
+        <p class="hint" id="results-empty" hidden>No labels match this filter.</p>
+        <p class="timing" id="timing-footer"></p>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>
+        Prototype built for a Department of the Treasury take-home assessment. It runs entirely
+        on one server with no outbound network access, and it makes no request to any other
+        origin.
+      </p>
+    </footer>
+
+    <dialog id="review-dialog" aria-labelledby="review-title">
+      <div class="dialog-head">
+        <h2 id="review-title">Review</h2>
+        <button class="button button-secondary" id="dialog-close" type="button">Close</button>
+      </div>
+      <p class="dialog-status" id="dialog-status" aria-live="polite"></p>
+      <div id="dialog-body"></div>
+      <div class="dialog-foot">
+        <div class="row-actions">
+          <button class="button button-approve" id="approve-button" type="button">
+            Looks correct — approve <span class="key">A</span>
+          </button>
+          <button class="button button-reject" id="reject-button" type="button">
+            Confirm violation — reject <span class="key">R</span>
+          </button>
+        </div>
+        <p class="hint">
+          Your decision is recorded alongside the machine verdict. It never changes the machine
+          verdict, and both appear in the CSV export.
+        </p>
+      </div>
+    </dialog>
+  </body>
+</html>

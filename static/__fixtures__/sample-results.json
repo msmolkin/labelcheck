@@ -1,0 +1,2176 @@
+{
+  "_comment": "Development fixture for the frontend, shaped to ARCHITECTURE.md 7.4. It is the response body of GET /api/batches/{id}/results, and it is never served by the application: a throwaway local stub replays it so the one screen can be built and reviewed without the OCR stack running.",
+  "cursor": 8,
+  "done": true,
+  "counts": {
+    "queued": 0,
+    "running": 0,
+    "green": 1,
+    "amber": 2,
+    "red": 4,
+    "error": 1
+  },
+  "timing": {
+    "median_ms": 3140,
+    "p95_ms": 4324,
+    "max_ms": 4488
+  },
+  "results": [
+    {
+      "image_id": "6f1c0a2e-0001-4a10-9f11-000000000001",
+      "filename": "label_001.jpg",
+      "record_id": "label_001",
+      "pairing": "stem",
+      "status": "done",
+      "overall": "green",
+      "low_confidence": false,
+      "processing_ms": 2371,
+      "queued_ms": 210,
+      "passes": 1,
+      "pass2_reason": null,
+      "checks": [
+        {
+          "id": "warning_present",
+          "state": "green",
+          "title": "Health warning present",
+          "detail": "Statement located on the label.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "anchor_score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "warning_text",
+          "state": "green",
+          "title": "Warning text matches 27 CFR 16.21",
+          "detail": "Every word of the required statement was read as written.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "prefix_score": 100.0,
+            "region_score": 100.0,
+            "diff": [
+              {
+                "w": "GOVERNMENT",
+                "s": "equal"
+              },
+              {
+                "w": "WARNING:",
+                "s": "equal"
+              },
+              {
+                "w": "(1)",
+                "s": "equal"
+              },
+              {
+                "w": "According",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "Surgeon",
+                "s": "equal"
+              },
+              {
+                "w": "General,",
+                "s": "equal"
+              },
+              {
+                "w": "women",
+                "s": "equal"
+              },
+              {
+                "w": "should",
+                "s": "equal"
+              },
+              {
+                "w": "not",
+                "s": "equal"
+              },
+              {
+                "w": "drink",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "during",
+                "s": "equal"
+              },
+              {
+                "w": "pregnancy",
+                "s": "equal"
+              },
+              {
+                "w": "because",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "risk",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "birth",
+                "s": "equal"
+              },
+              {
+                "w": "defects.",
+                "s": "equal"
+              },
+              {
+                "w": "(2)",
+                "s": "equal"
+              },
+              {
+                "w": "Consumption",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "impairs",
+                "s": "equal"
+              },
+              {
+                "w": "your",
+                "s": "equal"
+              },
+              {
+                "w": "ability",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "drive",
+                "s": "equal"
+              },
+              {
+                "w": "a",
+                "s": "equal"
+              },
+              {
+                "w": "car",
+                "s": "equal"
+              },
+              {
+                "w": "or",
+                "s": "equal"
+              },
+              {
+                "w": "operate",
+                "s": "equal"
+              },
+              {
+                "w": "machinery,",
+                "s": "equal"
+              },
+              {
+                "w": "and",
+                "s": "equal"
+              },
+              {
+                "w": "may",
+                "s": "equal"
+              },
+              {
+                "w": "cause",
+                "s": "equal"
+              },
+              {
+                "w": "health",
+                "s": "equal"
+              },
+              {
+                "w": "problems.",
+                "s": "equal"
+              }
+            ],
+            "clause_coverage": {
+              "1": 1.0,
+              "2": 1.0
+            }
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_case",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is in capital letters",
+          "detail": "100% of the letters in the prefix are capitals.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "upper_ratio": 1.0,
+            "span": "GOVERNMENT WARNING"
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_bold",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is bolder than the statement body",
+          "detail": "Stroke weight ratio 1.60 (a ratio of 1.20 or more passes).",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "ratio": 1.6,
+            "sharpness": 0.75,
+            "cap_px": 27.0
+          },
+          "crop": "bold"
+        },
+        {
+          "id": "brand",
+          "state": "green",
+          "title": "Brand name matches the application record",
+          "detail": "Label reads OLD TOM DISTILLERY; record says Old Tom Distillery.",
+          "citation": null,
+          "evidence": {
+            "label": "OLD TOM DISTILLERY",
+            "record": "Old Tom Distillery",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "class_type",
+          "state": "green",
+          "title": "Class/type matches the application record",
+          "detail": "Label reads STRAIGHT BOURBON WHISKEY; record says Straight Bourbon Whiskey.",
+          "citation": null,
+          "evidence": {
+            "label": "STRAIGHT BOURBON WHISKEY",
+            "record": "Straight Bourbon Whiskey",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "alcohol_content",
+          "state": "green",
+          "title": "Alcohol content matches the application record",
+          "detail": "Label and record both state 45%.",
+          "citation": null,
+          "evidence": {
+            "label_pct": 45.0,
+            "record_pct": 45.0,
+            "label_proof": 90.0
+          },
+          "crop": null
+        },
+        {
+          "id": "net_contents",
+          "state": "green",
+          "title": "Net contents match the application record",
+          "detail": "Label and record both state 750 mL.",
+          "citation": null,
+          "evidence": {
+            "label_ml": 750.0,
+            "record_ml": 750.0
+          },
+          "crop": null
+        }
+      ],
+      "agent_decision": null,
+      "informational": [
+        {
+          "id": "type_size",
+          "text": "750 mL container: 27 CFR 16.22(b) requires type of at least 2 mm, and 16.22(a)(4) allows at most 25 characters per inch at that size. Neither is verifiable from an uncalibrated photograph."
+        }
+      ],
+      "error": null,
+      "page_text": "OLD TOM DISTILLERY STRAIGHT BOURBON WHISKEY GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "warning_region_text": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+    },
+    {
+      "image_id": "6f1c0a2e-0002-4a10-9f11-000000000002",
+      "filename": "label_002.jpg",
+      "record_id": "label_002",
+      "pairing": "stem",
+      "status": "done",
+      "overall": "red",
+      "low_confidence": false,
+      "processing_ms": 3140,
+      "queued_ms": 210,
+      "passes": 2,
+      "pass2_reason": "prefix case read as \"title\", not capitals",
+      "checks": [
+        {
+          "id": "warning_present",
+          "state": "green",
+          "title": "Health warning present",
+          "detail": "Statement located on the label.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "anchor_score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "warning_text",
+          "state": "green",
+          "title": "Warning text matches 27 CFR 16.21",
+          "detail": "Two words show character noise; no word differs from the statute.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "prefix_score": 100.0,
+            "region_score": 97.6,
+            "diff": [
+              {
+                "w": "GOVERNMENT",
+                "s": "equal"
+              },
+              {
+                "w": "WARNlNG:",
+                "s": "noise",
+                "expected": "WARNING:"
+              },
+              {
+                "w": "(1)",
+                "s": "equal"
+              },
+              {
+                "w": "AcCording",
+                "s": "noise",
+                "expected": "According"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "Surgeon",
+                "s": "equal"
+              },
+              {
+                "w": "General,",
+                "s": "equal"
+              },
+              {
+                "w": "women",
+                "s": "equal"
+              },
+              {
+                "w": "should",
+                "s": "equal"
+              },
+              {
+                "w": "not",
+                "s": "equal"
+              },
+              {
+                "w": "drink",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "during",
+                "s": "equal"
+              },
+              {
+                "w": "pregnancy",
+                "s": "equal"
+              },
+              {
+                "w": "because",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "risk",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "birth",
+                "s": "equal"
+              },
+              {
+                "w": "defects.",
+                "s": "equal"
+              },
+              {
+                "w": "(2)",
+                "s": "equal"
+              },
+              {
+                "w": "Consumption",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "impairs",
+                "s": "equal"
+              },
+              {
+                "w": "your",
+                "s": "equal"
+              },
+              {
+                "w": "ability",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "drive",
+                "s": "equal"
+              },
+              {
+                "w": "a",
+                "s": "equal"
+              },
+              {
+                "w": "car",
+                "s": "equal"
+              },
+              {
+                "w": "or",
+                "s": "equal"
+              },
+              {
+                "w": "operate",
+                "s": "equal"
+              },
+              {
+                "w": "machinery,",
+                "s": "equal"
+              },
+              {
+                "w": "and",
+                "s": "equal"
+              },
+              {
+                "w": "may",
+                "s": "equal"
+              },
+              {
+                "w": "cause",
+                "s": "equal"
+              },
+              {
+                "w": "health",
+                "s": "equal"
+              },
+              {
+                "w": "problems.",
+                "s": "equal"
+              }
+            ],
+            "clause_coverage": {
+              "1": 1.0,
+              "2": 1.0
+            }
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_case",
+          "state": "red",
+          "title": "\"GOVERNMENT WARNING\" is not in capital letters",
+          "detail": "Read as \"Government Warning\" — 12% of the letters are capitals, and 27 CFR 16.22(a)(2) requires capitals.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "upper_ratio": 0.12,
+            "span": "Government Warning"
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_bold",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is bolder than the statement body",
+          "detail": "Stroke weight ratio 1.47 (a ratio of 1.20 or more passes).",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "ratio": 1.47,
+            "sharpness": 0.59,
+            "cap_px": 25.0
+          },
+          "crop": "bold"
+        },
+        {
+          "id": "brand",
+          "state": "green",
+          "title": "Brand name matches the application record",
+          "detail": "Label reads STONE'S THROW; record says Stone's Throw.",
+          "citation": null,
+          "evidence": {
+            "label": "STONE'S THROW",
+            "record": "Stone's Throw",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "class_type",
+          "state": "green",
+          "title": "Class/type matches the application record",
+          "detail": "Label reads LONDON DRY GIN; record says London Dry Gin.",
+          "citation": null,
+          "evidence": {
+            "label": "LONDON DRY GIN",
+            "record": "London Dry Gin",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "alcohol_content",
+          "state": "green",
+          "title": "Alcohol content matches the application record",
+          "detail": "Label and record both state 47%.",
+          "citation": null,
+          "evidence": {
+            "label_pct": 47.0,
+            "record_pct": 47.0
+          },
+          "crop": null
+        },
+        {
+          "id": "net_contents",
+          "state": "green",
+          "title": "Net contents match the application record",
+          "detail": "Label and record both state 750 mL.",
+          "citation": null,
+          "evidence": {
+            "label_ml": 750.0,
+            "record_ml": 750.0
+          },
+          "crop": null
+        }
+      ],
+      "agent_decision": null,
+      "informational": [
+        {
+          "id": "type_size",
+          "text": "750 mL container: 27 CFR 16.22(b) requires type of at least 2 mm, and 16.22(a)(4) allows at most 25 characters per inch at that size. Neither is verifiable from an uncalibrated photograph."
+        }
+      ],
+      "error": null,
+      "page_text": "OLD TOM DISTILLERY STRAIGHT BOURBON WHISKEY GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "warning_region_text": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+    },
+    {
+      "image_id": "6f1c0a2e-0003-4a10-9f11-000000000003",
+      "filename": "label_006.jpg",
+      "record_id": "label_006",
+      "pairing": "stem",
+      "status": "done",
+      "overall": "red",
+      "low_confidence": false,
+      "processing_ms": 3402,
+      "queued_ms": 210,
+      "passes": 2,
+      "pass2_reason": "region_score 88.4 below the 95.0 escalation threshold",
+      "checks": [
+        {
+          "id": "warning_present",
+          "state": "green",
+          "title": "Health warning present",
+          "detail": "Statement located on the label.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "anchor_score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "warning_text",
+          "state": "green",
+          "title": "Warning text matches 27 CFR 16.21",
+          "detail": "Every word of the required statement was read as written.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "prefix_score": 100.0,
+            "region_score": 99.1,
+            "diff": [
+              {
+                "w": "GOVERNMENT",
+                "s": "equal"
+              },
+              {
+                "w": "WARNING:",
+                "s": "equal"
+              },
+              {
+                "w": "(1)",
+                "s": "equal"
+              },
+              {
+                "w": "According",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "Surgeon",
+                "s": "equal"
+              },
+              {
+                "w": "General,",
+                "s": "equal"
+              },
+              {
+                "w": "women",
+                "s": "equal"
+              },
+              {
+                "w": "should",
+                "s": "equal"
+              },
+              {
+                "w": "not",
+                "s": "equal"
+              },
+              {
+                "w": "drink",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "during",
+                "s": "equal"
+              },
+              {
+                "w": "pregnancy",
+                "s": "equal"
+              },
+              {
+                "w": "because",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "risk",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "birth",
+                "s": "equal"
+              },
+              {
+                "w": "defects.",
+                "s": "equal"
+              },
+              {
+                "w": "(2)",
+                "s": "equal"
+              },
+              {
+                "w": "Consumption",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "impairs",
+                "s": "equal"
+              },
+              {
+                "w": "your",
+                "s": "equal"
+              },
+              {
+                "w": "ability",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "drive",
+                "s": "equal"
+              },
+              {
+                "w": "a",
+                "s": "equal"
+              },
+              {
+                "w": "car",
+                "s": "equal"
+              },
+              {
+                "w": "or",
+                "s": "equal"
+              },
+              {
+                "w": "operate",
+                "s": "equal"
+              },
+              {
+                "w": "machinery,",
+                "s": "equal"
+              },
+              {
+                "w": "and",
+                "s": "equal"
+              },
+              {
+                "w": "may",
+                "s": "equal"
+              },
+              {
+                "w": "cause",
+                "s": "equal"
+              },
+              {
+                "w": "health",
+                "s": "equal"
+              },
+              {
+                "w": "problems.",
+                "s": "equal"
+              }
+            ],
+            "clause_coverage": {
+              "1": 1.0,
+              "2": 1.0
+            }
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_case",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is in capital letters",
+          "detail": "100% of the letters in the prefix are capitals.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "upper_ratio": 1.0,
+            "span": "GOVERNMENT WARNING"
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_bold",
+          "state": "red",
+          "title": "Prefix and statement body carry the same weight",
+          "detail": "27 CFR 16.22(a)(2) requires the prefix to be bold and the remainder not to be. Measured stroke weight ratio 1.03, where 1.05 or below means the two are indistinguishable. The likely violation is that \"GOVERNMENT WARNING\" is not bold.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "ratio": 1.03,
+            "sharpness": 0.64,
+            "cap_px": 24.0,
+            "likely_violation": "prefix_not_bold"
+          },
+          "crop": "bold"
+        },
+        {
+          "id": "brand",
+          "state": "green",
+          "title": "Brand name matches the application record",
+          "detail": "Label reads SILVER CREEK; record says Silver Creek.",
+          "citation": null,
+          "evidence": {
+            "label": "SILVER CREEK",
+            "record": "Silver Creek",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "class_type",
+          "state": "green",
+          "title": "Class/type matches the application record",
+          "detail": "Label reads SILVER TEQUILA; record says Silver Tequila.",
+          "citation": null,
+          "evidence": {
+            "label": "SILVER TEQUILA",
+            "record": "Silver Tequila",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "alcohol_content",
+          "state": "red",
+          "title": "Alcohol content does not match the application record",
+          "detail": "Label states 40%; the application record states 38%.",
+          "citation": null,
+          "evidence": {
+            "label_pct": 40.0,
+            "record_pct": 38.0
+          },
+          "crop": null
+        },
+        {
+          "id": "net_contents",
+          "state": "green",
+          "title": "Net contents match the application record",
+          "detail": "Label reads 1 L; record says 1 L (1000 mL).",
+          "citation": null,
+          "evidence": {
+            "label_ml": 1000.0,
+            "record_ml": 1000.0
+          },
+          "crop": null
+        }
+      ],
+      "agent_decision": null,
+      "informational": [
+        {
+          "id": "type_size",
+          "text": "1000 mL container: 27 CFR 16.22(b) requires type of at least 2 mm, and 16.22(a)(4) allows at most 25 characters per inch at that size. Neither is verifiable from an uncalibrated photograph."
+        }
+      ],
+      "error": null,
+      "page_text": "OLD TOM DISTILLERY STRAIGHT BOURBON WHISKEY GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "warning_region_text": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+    },
+    {
+      "image_id": "6f1c0a2e-0004-4a10-9f11-000000000004",
+      "filename": "label_037.jpg",
+      "record_id": "label_037",
+      "pairing": "stem",
+      "status": "done",
+      "overall": "amber",
+      "low_confidence": false,
+      "processing_ms": 4488,
+      "queued_ms": 210,
+      "passes": 2,
+      "pass2_reason": "region_score 92.1 below the 95.0 escalation threshold",
+      "checks": [
+        {
+          "id": "warning_present",
+          "state": "green",
+          "title": "Health warning present",
+          "detail": "Statement located on the label.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "anchor_score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "warning_text",
+          "state": "green",
+          "title": "Warning text matches 27 CFR 16.21",
+          "detail": "One word shows character noise; no word differs from the statute.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "prefix_score": 100.0,
+            "region_score": 96.4,
+            "diff": [
+              {
+                "w": "GOVERNMENT",
+                "s": "equal"
+              },
+              {
+                "w": "WARNING:",
+                "s": "equal"
+              },
+              {
+                "w": "(1)",
+                "s": "equal"
+              },
+              {
+                "w": "According",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "Surgeon",
+                "s": "equal"
+              },
+              {
+                "w": "General,",
+                "s": "equal"
+              },
+              {
+                "w": "women",
+                "s": "equal"
+              },
+              {
+                "w": "should",
+                "s": "equal"
+              },
+              {
+                "w": "not",
+                "s": "equal"
+              },
+              {
+                "w": "drink",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "during",
+                "s": "equal"
+              },
+              {
+                "w": "pregnancy",
+                "s": "equal"
+              },
+              {
+                "w": "because",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "risk",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "birth",
+                "s": "equal"
+              },
+              {
+                "w": "defects.",
+                "s": "equal"
+              },
+              {
+                "w": "(2)",
+                "s": "equal"
+              },
+              {
+                "w": "Consumption",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "impairs",
+                "s": "equal"
+              },
+              {
+                "w": "your",
+                "s": "equal"
+              },
+              {
+                "w": "ability",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "drive",
+                "s": "equal"
+              },
+              {
+                "w": "a",
+                "s": "equal"
+              },
+              {
+                "w": "car",
+                "s": "equal"
+              },
+              {
+                "w": "or",
+                "s": "equal"
+              },
+              {
+                "w": "operate",
+                "s": "equal"
+              },
+              {
+                "w": "rnachinery,",
+                "s": "noise",
+                "expected": "machinery,"
+              },
+              {
+                "w": "and",
+                "s": "equal"
+              },
+              {
+                "w": "may",
+                "s": "equal"
+              },
+              {
+                "w": "cause",
+                "s": "equal"
+              },
+              {
+                "w": "health",
+                "s": "equal"
+              },
+              {
+                "w": "problems.",
+                "s": "equal"
+              }
+            ],
+            "clause_coverage": {
+              "1": 1.0,
+              "2": 1.0
+            }
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_case",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is in capital letters",
+          "detail": "100% of the letters in the prefix are capitals.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "upper_ratio": 1.0,
+            "span": "GOVERNMENT WARNING"
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_bold",
+          "state": "amber",
+          "title": "Boldness could not be measured",
+          "detail": "The photograph is too soft to measure stroke weight (sharpness 0.04 against a 0.20 minimum). A sharper photograph of the warning would settle it.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "sharpness": 0.04,
+            "gate": "defocus",
+            "ratio": null
+          },
+          "crop": "bold"
+        },
+        {
+          "id": "brand",
+          "state": "green",
+          "title": "Brand name matches the application record",
+          "detail": "Label reads IRON GATE; record says Iron Gate.",
+          "citation": null,
+          "evidence": {
+            "label": "IRON GATE",
+            "record": "Iron Gate",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "class_type",
+          "state": "green",
+          "title": "Class/type matches the application record",
+          "detail": "Label reads KENTUCKY STRAIGHT RYE WHISKEY; record says the same.",
+          "citation": null,
+          "evidence": {
+            "label": "KENTUCKY STRAIGHT RYE WHISKEY",
+            "record": "Kentucky Straight Rye Whiskey",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "alcohol_content",
+          "state": "green",
+          "title": "Alcohol content matches the application record",
+          "detail": "Label and record both state 50%.",
+          "citation": null,
+          "evidence": {
+            "label_pct": 50.0,
+            "record_pct": 50.0
+          },
+          "crop": null
+        },
+        {
+          "id": "net_contents",
+          "state": "green",
+          "title": "Net contents match the application record",
+          "detail": "Label and record both state 375 mL.",
+          "citation": null,
+          "evidence": {
+            "label_ml": 375.0,
+            "record_ml": 375.0
+          },
+          "crop": null
+        }
+      ],
+      "agent_decision": null,
+      "informational": [
+        {
+          "id": "type_size",
+          "text": "375 mL container: 27 CFR 16.22(b) requires type of at least 2 mm, and 16.22(a)(4) allows at most 25 characters per inch at that size. Neither is verifiable from an uncalibrated photograph."
+        }
+      ],
+      "error": null,
+      "page_text": "OLD TOM DISTILLERY STRAIGHT BOURBON WHISKEY GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "warning_region_text": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+    },
+    {
+      "image_id": "6f1c0a2e-0005-4a10-9f11-000000000005",
+      "filename": "label_026.jpg",
+      "record_id": "label_026",
+      "pairing": "stem",
+      "status": "done",
+      "overall": "amber",
+      "low_confidence": true,
+      "processing_ms": 1980,
+      "queued_ms": 210,
+      "passes": 1,
+      "pass2_reason": null,
+      "checks": [
+        {
+          "id": "warning_present",
+          "state": "green",
+          "title": "Health warning present",
+          "detail": "Statement located on the label.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "anchor_score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "warning_text",
+          "state": "amber",
+          "title": "Warning text could not be read reliably",
+          "detail": "The statement is present but the photograph did not give a reliable read (clause 1 scored 88 against a 95 minimum), so no rejection is reported. Compare the crop with the required text.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "prefix_score": 88.0,
+            "region_score": 74.2,
+            "diff": [
+              {
+                "w": "GOVERNMENT",
+                "s": "equal"
+              },
+              {
+                "w": "WARNING:",
+                "s": "equal"
+              },
+              {
+                "w": "(1)",
+                "s": "equal"
+              },
+              {
+                "w": "According",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "Surgcon",
+                "s": "noise",
+                "expected": "Surgeon"
+              },
+              {
+                "w": "General,",
+                "s": "equal"
+              },
+              {
+                "w": "women",
+                "s": "equal"
+              },
+              {
+                "w": "should",
+                "s": "equal"
+              },
+              {
+                "w": "not",
+                "s": "equal"
+              },
+              {
+                "w": "drink",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "bevcrages",
+                "s": "noise",
+                "expected": "beverages"
+              },
+              {
+                "w": "during",
+                "s": "equal"
+              },
+              {
+                "w": "pregnancy",
+                "s": "equal"
+              },
+              {
+                "w": "because",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "risk",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "birth",
+                "s": "equal"
+              },
+              {
+                "w": "defects.",
+                "s": "equal"
+              },
+              {
+                "w": "(2)",
+                "s": "equal"
+              },
+              {
+                "w": "Consumption",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "bevcrages",
+                "s": "noise",
+                "expected": "beverages"
+              },
+              {
+                "w": "impairs",
+                "s": "equal"
+              },
+              {
+                "w": "your",
+                "s": "equal"
+              },
+              {
+                "w": "ability",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "drive",
+                "s": "equal"
+              },
+              {
+                "w": "a",
+                "s": "equal"
+              },
+              {
+                "w": "car",
+                "s": "equal"
+              },
+              {
+                "w": "or",
+                "s": "equal"
+              },
+              {
+                "w": "operate",
+                "s": "equal"
+              },
+              {
+                "w": "rnachinery,",
+                "s": "noise",
+                "expected": "machinery,"
+              },
+              {
+                "w": "and",
+                "s": "equal"
+              },
+              {
+                "w": "may",
+                "s": "equal"
+              },
+              {
+                "w": "cause",
+                "s": "equal"
+              },
+              {
+                "w": "health",
+                "s": "equal"
+              },
+              {
+                "w": "problems.",
+                "s": "equal"
+              }
+            ],
+            "clause_coverage": {
+              "1": 0.82,
+              "2": 0.79
+            }
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_case",
+          "state": "amber",
+          "title": "Capitalisation could not be confirmed",
+          "detail": "The prefix read with a mix of cases (65% capitals), which is between the confident thresholds.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "upper_ratio": 0.65,
+            "span": "GOVERNMENT WARNlNG"
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_bold",
+          "state": "amber",
+          "title": "Boldness could not be measured",
+          "detail": "The warning type is about 9 pixels tall in this photograph; below about 11 pixels the stroke weight carries no signal.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "sharpness": 0.44,
+            "gate": "tiny",
+            "cap_px": 9.0
+          },
+          "crop": "bold"
+        },
+        {
+          "id": "brand",
+          "state": "green",
+          "title": "Brand name matches the application record",
+          "detail": "Label reads SILVER CREEK; record says Silver Creek.",
+          "citation": null,
+          "evidence": {
+            "label": "SILVER CREEK",
+            "record": "Silver Creek",
+            "score": 96.0
+          },
+          "crop": null
+        },
+        {
+          "id": "class_type",
+          "state": "green",
+          "title": "Class/type matches the application record",
+          "detail": "Label reads SILVER TEQUILA; record says Silver Tequila.",
+          "citation": null,
+          "evidence": {
+            "label": "SILVER TEQUILA",
+            "record": "Silver Tequila",
+            "score": 93.0
+          },
+          "crop": null
+        },
+        {
+          "id": "alcohol_content",
+          "state": "amber",
+          "title": "Alcohol content could not be read",
+          "detail": "No percentage was legible on the label; the record states 40%.",
+          "citation": null,
+          "evidence": {
+            "label_pct": null,
+            "record_pct": 40.0
+          },
+          "crop": null
+        },
+        {
+          "id": "net_contents",
+          "state": "green",
+          "title": "Net contents match the application record",
+          "detail": "Label reads 1 L; record says 1 L (1000 mL).",
+          "citation": null,
+          "evidence": {
+            "label_ml": 1000.0,
+            "record_ml": 1000.0
+          },
+          "crop": null
+        }
+      ],
+      "agent_decision": null,
+      "informational": [
+        {
+          "id": "type_size",
+          "text": "1000 mL container: 27 CFR 16.22(b) requires type of at least 2 mm, and 16.22(a)(4) allows at most 25 characters per inch at that size. Neither is verifiable from an uncalibrated photograph."
+        }
+      ],
+      "error": null,
+      "page_text": "OLD TOM DISTILLERY STRAIGHT BOURBON WHISKEY GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "warning_region_text": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+    },
+    {
+      "image_id": "6f1c0a2e-0006-4a10-9f11-000000000006",
+      "filename": "label_050.jpg",
+      "record_id": "label_050",
+      "pairing": "stem",
+      "status": "done",
+      "overall": "red",
+      "low_confidence": false,
+      "processing_ms": 3980,
+      "queued_ms": 210,
+      "passes": 2,
+      "pass2_reason": "region_score 62.8 below the 95.0 escalation threshold",
+      "checks": [
+        {
+          "id": "warning_present",
+          "state": "green",
+          "title": "Health warning present",
+          "detail": "Statement located on the label.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "anchor_score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "warning_text",
+          "state": "red",
+          "title": "Warning text does not match 27 CFR 16.21",
+          "detail": "The second clause of the statement is absent: 20 of the 20 words of clause (2) were not found on the label.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "prefix_score": 100.0,
+            "region_score": 62.8,
+            "diff": [
+              {
+                "w": "GOVERNMENT",
+                "s": "equal"
+              },
+              {
+                "w": "WARNING:",
+                "s": "equal"
+              },
+              {
+                "w": "(1)",
+                "s": "equal"
+              },
+              {
+                "w": "According",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "Surgeon",
+                "s": "equal"
+              },
+              {
+                "w": "General,",
+                "s": "equal"
+              },
+              {
+                "w": "women",
+                "s": "equal"
+              },
+              {
+                "w": "should",
+                "s": "equal"
+              },
+              {
+                "w": "not",
+                "s": "equal"
+              },
+              {
+                "w": "drink",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "during",
+                "s": "equal"
+              },
+              {
+                "w": "pregnancy",
+                "s": "equal"
+              },
+              {
+                "w": "because",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "risk",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "birth",
+                "s": "equal"
+              },
+              {
+                "w": "defects.",
+                "s": "equal"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "(2)"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "Consumption"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "of"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "alcoholic"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "beverages"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "impairs"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "your"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "ability"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "to"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "drive"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "a"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "car"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "or"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "operate"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "machinery,"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "and"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "may"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "cause"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "health"
+              },
+              {
+                "w": "",
+                "s": "missing",
+                "expected": "problems."
+              }
+            ],
+            "clause_coverage": {
+              "1": 1.0,
+              "2": 0.0
+            }
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_case",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is in capital letters",
+          "detail": "100% of the letters in the prefix are capitals.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "upper_ratio": 1.0,
+            "span": "GOVERNMENT WARNING"
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_bold",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is bolder than the statement body",
+          "detail": "Stroke weight ratio 1.34 (a ratio of 1.20 or more passes).",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "ratio": 1.34,
+            "sharpness": 0.98,
+            "cap_px": 22.0
+          },
+          "crop": "bold"
+        },
+        {
+          "id": "brand",
+          "state": "green",
+          "title": "Brand name matches the application record",
+          "detail": "Label reads RED FEATHER; record says Red Feather.",
+          "citation": null,
+          "evidence": {
+            "label": "RED FEATHER",
+            "record": "Red Feather",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "class_type",
+          "state": "green",
+          "title": "Class/type matches the application record",
+          "detail": "Label reads SONOMA COAST PINOT NOIR; record says the same.",
+          "citation": null,
+          "evidence": {
+            "label": "SONOMA COAST PINOT NOIR",
+            "record": "Sonoma Coast Pinot Noir",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "alcohol_content",
+          "state": "green",
+          "title": "Alcohol content matches the application record",
+          "detail": "Label and record both state 14.1%.",
+          "citation": null,
+          "evidence": {
+            "label_pct": 14.1,
+            "record_pct": 14.1
+          },
+          "crop": null
+        },
+        {
+          "id": "net_contents",
+          "state": "green",
+          "title": "Net contents match the application record",
+          "detail": "Label and record both state 750 mL.",
+          "citation": null,
+          "evidence": {
+            "label_ml": 750.0,
+            "record_ml": 750.0
+          },
+          "crop": null
+        }
+      ],
+      "agent_decision": "rejected",
+      "informational": [
+        {
+          "id": "type_size",
+          "text": "750 mL container: 27 CFR 16.22(b) requires type of at least 2 mm, and 16.22(a)(4) allows at most 25 characters per inch at that size. Neither is verifiable from an uncalibrated photograph."
+        }
+      ],
+      "error": null,
+      "page_text": "OLD TOM DISTILLERY STRAIGHT BOURBON WHISKEY GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "warning_region_text": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+    },
+    {
+      "image_id": "6f1c0a2e-0007-4a10-9f11-000000000007",
+      "filename": "label_003.jpg",
+      "record_id": "label_003",
+      "pairing": "stem",
+      "status": "done",
+      "overall": "red",
+      "low_confidence": false,
+      "processing_ms": 2860,
+      "queued_ms": 210,
+      "passes": 2,
+      "pass2_reason": "region_score 93.0 below the 95.0 escalation threshold",
+      "checks": [
+        {
+          "id": "warning_present",
+          "state": "green",
+          "title": "Health warning present",
+          "detail": "Statement located on the label.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "anchor_score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "warning_text",
+          "state": "red",
+          "title": "Warning text does not match 27 CFR 16.21",
+          "detail": "The label reads \"issues.\" where 27 CFR 16.21 requires \"problems.\". The statement must appear word for word.",
+          "citation": "27 CFR 16.21",
+          "evidence": {
+            "prefix_score": 100.0,
+            "region_score": 93.0,
+            "diff": [
+              {
+                "w": "GOVERNMENT",
+                "s": "equal"
+              },
+              {
+                "w": "WARNING:",
+                "s": "equal"
+              },
+              {
+                "w": "(1)",
+                "s": "equal"
+              },
+              {
+                "w": "According",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "Surgeon",
+                "s": "equal"
+              },
+              {
+                "w": "General,",
+                "s": "equal"
+              },
+              {
+                "w": "women",
+                "s": "equal"
+              },
+              {
+                "w": "should",
+                "s": "equal"
+              },
+              {
+                "w": "not",
+                "s": "equal"
+              },
+              {
+                "w": "drink",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "during",
+                "s": "equal"
+              },
+              {
+                "w": "pregnancy",
+                "s": "equal"
+              },
+              {
+                "w": "because",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "the",
+                "s": "equal"
+              },
+              {
+                "w": "risk",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "birth",
+                "s": "equal"
+              },
+              {
+                "w": "defects.",
+                "s": "equal"
+              },
+              {
+                "w": "(2)",
+                "s": "equal"
+              },
+              {
+                "w": "Consumption",
+                "s": "equal"
+              },
+              {
+                "w": "of",
+                "s": "equal"
+              },
+              {
+                "w": "alcoholic",
+                "s": "equal"
+              },
+              {
+                "w": "beverages",
+                "s": "equal"
+              },
+              {
+                "w": "impairs",
+                "s": "equal"
+              },
+              {
+                "w": "your",
+                "s": "equal"
+              },
+              {
+                "w": "ability",
+                "s": "equal"
+              },
+              {
+                "w": "to",
+                "s": "equal"
+              },
+              {
+                "w": "drive",
+                "s": "equal"
+              },
+              {
+                "w": "a",
+                "s": "equal"
+              },
+              {
+                "w": "car",
+                "s": "equal"
+              },
+              {
+                "w": "or",
+                "s": "equal"
+              },
+              {
+                "w": "operate",
+                "s": "equal"
+              },
+              {
+                "w": "machinery,",
+                "s": "equal"
+              },
+              {
+                "w": "and",
+                "s": "equal"
+              },
+              {
+                "w": "may",
+                "s": "equal"
+              },
+              {
+                "w": "cause",
+                "s": "equal"
+              },
+              {
+                "w": "health",
+                "s": "equal"
+              },
+              {
+                "w": "issues.",
+                "s": "substituted",
+                "expected": "problems."
+              }
+            ],
+            "clause_coverage": {
+              "1": 1.0,
+              "2": 0.95
+            }
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_case",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is in capital letters",
+          "detail": "100% of the letters in the prefix are capitals.",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "upper_ratio": 1.0,
+            "span": "GOVERNMENT WARNING"
+          },
+          "crop": "band"
+        },
+        {
+          "id": "warning_bold",
+          "state": "green",
+          "title": "\"GOVERNMENT WARNING\" is bolder than the statement body",
+          "detail": "Stroke weight ratio 1.48 (a ratio of 1.20 or more passes).",
+          "citation": "27 CFR 16.22(a)(2)",
+          "evidence": {
+            "ratio": 1.48,
+            "sharpness": 1.02,
+            "cap_px": 26.0
+          },
+          "crop": "bold"
+        },
+        {
+          "id": "brand",
+          "state": "green",
+          "title": "Brand name matches the application record",
+          "detail": "Label reads SMITH & SONS; record says Smith & Sons.",
+          "citation": null,
+          "evidence": {
+            "label": "SMITH & SONS",
+            "record": "Smith & Sons",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "class_type",
+          "state": "green",
+          "title": "Class/type matches the application record",
+          "detail": "Label reads BLENDED SCOTCH WHISKY; record says Blended Scotch Whisky.",
+          "citation": null,
+          "evidence": {
+            "label": "BLENDED SCOTCH WHISKY",
+            "record": "Blended Scotch Whisky",
+            "score": 100.0
+          },
+          "crop": null
+        },
+        {
+          "id": "alcohol_content",
+          "state": "green",
+          "title": "Alcohol content matches the application record",
+          "detail": "Label and record both state 40%.",
+          "citation": null,
+          "evidence": {
+            "label_pct": 40.0,
+            "record_pct": 40.0
+          },
+          "crop": null
+        },
+        {
+          "id": "net_contents",
+          "state": "green",
+          "title": "Net contents match the application record",
+          "detail": "Label and record both state 700 mL.",
+          "citation": null,
+          "evidence": {
+            "label_ml": 700.0,
+            "record_ml": 700.0
+          },
+          "crop": null
+        }
+      ],
+      "agent_decision": null,
+      "informational": [
+        {
+          "id": "type_size",
+          "text": "700 mL container: 27 CFR 16.22(b) requires type of at least 2 mm, and 16.22(a)(4) allows at most 25 characters per inch at that size. Neither is verifiable from an uncalibrated photograph."
+        }
+      ],
+      "error": null,
+      "page_text": "OLD TOM DISTILLERY STRAIGHT BOURBON WHISKEY GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "warning_region_text": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+    },
+    {
+      "image_id": "6f1c0a2e-0008-4a10-9f11-000000000008",
+      "filename": "IMG_4471.jpg",
+      "record_id": null,
+      "pairing": "none",
+      "status": "error",
+      "overall": "error",
+      "low_confidence": false,
+      "processing_ms": 120,
+      "queued_ms": 210,
+      "passes": 1,
+      "pass2_reason": null,
+      "checks": [],
+      "agent_decision": null,
+      "informational": [],
+      "error": "This file could not be read as an image. Try re-exporting it as a JPEG.",
+      "page_text": "",
+      "warning_region_text": ""
+    }
+  ]
+}

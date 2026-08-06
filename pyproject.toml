@@ -1,0 +1,23 @@
+# Tool configuration for labelcheck.
+#
+# The application is deliberately NOT packaged: it is deployed as a source tree
+# (`/opt/labelcheck`) and run with `uvicorn app.api:app` from that directory, so
+# there is no `[project]` or `[build-system]` table to keep in sync. This file
+# configures the two development tools; their versions are pinned in the Makefile.
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+# spike/ and _reference/ are evidence, kept exactly as they were run. Markdown is excluded
+# because ruff reformats fenced Python inside it, and the design documents under internal/
+# are records — a formatter must not rewrite them.
+extend-exclude = ["spike", "_reference", ".venv", "internal", "docs", "*.md"]
+
+[tool.ruff.lint]
+# Defaults (E, F) plus import sorting, bugbear, and comprehension checks.
+select = ["E", "F", "I", "B", "C4", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: runs OCR"]
+addopts = "-m 'not slow'"

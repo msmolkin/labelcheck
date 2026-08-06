@@ -1,0 +1,737 @@
+{
+ "_what": "Expected verdict envelope for the 22 golden labels (ARCHITECTURE §11.9). tests/test_golden.py asserts each image lands inside `allowed` and never in `forbidden`.",
+ "_derivation": [
+  "Every entry starts from spike/corpus/ground_truth.json — NEVER from what the tool currently outputs, or the test would prove only that the code does what it does.",
+  "Mapping: warning_status == 'compliant' AND expected_record_match  ->  allowed {green, amber}, forbidden {red}.",
+  "Mapping: any violation status, OR expected_record_match == false  ->  allowed {red, amber}, forbidden {green}.",
+  "Carve-out for warning_status == 'v_tiny': the violation on those labels is type SIZE, which §1 and §15.1 place outside what this tool measures — 16.22(b) is not verifiable from an uncalibrated photograph, so it is reported on the informational panel and never enters the roll-up. Their text, capitalisation and bold are compliant, so the honest envelope is allowed {green, amber}, forbidden {red}. Forbidding green on them was a derivation error: it demanded the tool reject a label for something it does not claim to measure.",
+  "`derived_allowed` records the status-only mapping's output for every entry — before the tightenings that narrow it and before the v_tiny carve-out that widens it.",
+  "basis='tightened': one of the eight cases in §11.9 where the corpus is unambiguous and the tool must be exactly right.",
+  "basis='known_hard': one of the three cases in §11.9 that are expected to land amber, documented rather than quietly dropped.",
+  "The 22 ground-truth rows are copied in below because spike/corpus/ is git-ignored: the golden suite must run in a fresh clone against app/samples/.",
+  "Keys are the corpus filenames. app/samples/ re-encodes these to JPEG (§8.4), so the test matches on the filename STEM, not the extension."
+ ],
+ "_coverage_required": {
+  "_note": "The universe below is the whole 56-image corpus, not the golden subset: §11.9 requires the 22 to cover all 9 degradation classes, all 8 warning statuses, all 5 font families, both dark-background variants and all 5 record mismatches. tests/test_golden.py asserts it, so a future edit cannot silently narrow the set.",
+  "degradation": [
+   "blur",
+   "clean",
+   "curve",
+   "dark",
+   "glare",
+   "jpeg",
+   "persp",
+   "rot15",
+   "rot5"
+  ],
+  "warning_status": [
+   "compliant",
+   "v_allbold",
+   "v_missing",
+   "v_missing2",
+   "v_notbold",
+   "v_reworded",
+   "v_tiny",
+   "v_titlecase"
+  ],
+  "font_family": [
+   "Arial",
+   "Courier New",
+   "Georgia",
+   "Helvetica",
+   "Times New Roman"
+  ],
+  "dark_background_min": 2,
+  "record_mismatches": [
+   "label_006.png",
+   "label_014.png",
+   "label_023.png",
+   "label_031.png",
+   "label_042.png"
+  ]
+ },
+ "labels": {
+  "label_001.png": {
+   "allowed": [
+    "green"
+   ],
+   "forbidden": [
+    "amber",
+    "red"
+   ],
+   "basis": "tightened",
+   "why": "the reference case; if this is not green nothing works",
+   "derived_allowed": [
+    "green",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_001",
+    "warning_status": "compliant",
+    "degradation": "clean",
+    "font_family": "Helvetica",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 38,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "OLD TOM DISTILLERY",
+    "class_type": "Straight Bourbon Whiskey",
+    "abv": "45% Alc./Vol. (90 Proof)",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_056.png": {
+   "allowed": [
+    "green"
+   ],
+   "forbidden": [
+    "amber",
+    "red"
+   ],
+   "basis": "tightened",
+   "why": "a compliant label on a curved bottle must not be rejected. Measured: curve class word recall 1.000, exact rate 1.000, bold margin 0.677. If this lands amber, that is a real finding to investigate — not a test to relax",
+   "derived_allowed": [
+    "green",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_056",
+    "warning_status": "compliant",
+    "degradation": "curve",
+    "font_family": "Helvetica",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 35,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "SILVER CREEK",
+    "class_type": "Silver Tequila",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net_contents": "1 L"
+   }
+  },
+  "label_002.png": {
+   "allowed": [
+    "red"
+   ],
+   "forbidden": [
+    "green",
+    "amber"
+   ],
+   "basis": "tightened",
+   "why": "Jenny's canonical rejection, cleanly shot",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_002",
+    "warning_status": "v_titlecase",
+    "degradation": "clean",
+    "font_family": "Arial",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 36,
+    "gw_case": "title",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "STONE'S THROW",
+    "class_type": "London Dry Gin",
+    "abv": "47% Alc./Vol. (94 Proof)",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_006.png": {
+   "allowed": [
+    "red"
+   ],
+   "forbidden": [
+    "green",
+    "amber"
+   ],
+   "basis": "tightened",
+   "why": "both a bold violation and a record mismatch",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_006",
+    "warning_status": "v_notbold",
+    "degradation": "clean",
+    "font_family": "Helvetica",
+    "dark_background": false,
+    "expected_record_match": false,
+    "warning_font_px": 35,
+    "gw_case": "caps",
+    "gw_bold": false,
+    "body_bold": false,
+    "brand": "SILVER CREEK",
+    "class_type": "Silver Tequila",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net_contents": "1 L"
+   }
+  },
+  "label_023.png": {
+   "allowed": [
+    "red"
+   ],
+   "forbidden": [
+    "green",
+    "amber"
+   ],
+   "basis": "tightened",
+   "why": "no warning at all — must never be amber",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_023",
+    "warning_status": "v_missing",
+    "degradation": "persp",
+    "font_family": "Georgia",
+    "dark_background": false,
+    "expected_record_match": false,
+    "warning_font_px": 0,
+    "gw_case": null,
+    "gw_bold": false,
+    "body_bold": false,
+    "brand": "SMITH & SONS",
+    "class_type": "Blended Scotch Whisky",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net_contents": "700 mL"
+   }
+  },
+  "label_031.png": {
+   "allowed": [
+    "red"
+   ],
+   "forbidden": [
+    "green",
+    "amber"
+   ],
+   "basis": "tightened",
+   "why": "brand mismatch is unambiguous even if the text read degrades",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_031",
+    "warning_status": "v_missing2",
+    "degradation": "glare",
+    "font_family": "Helvetica",
+    "dark_background": false,
+    "expected_record_match": false,
+    "warning_font_px": 38,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "OLD TOM DISTILLERY",
+    "class_type": "Straight Bourbon Whiskey",
+    "abv": "45% Alc./Vol. (90 Proof)",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_039.png": {
+   "allowed": [
+    "red"
+   ],
+   "forbidden": [
+    "green",
+    "amber"
+   ],
+   "basis": "tightened",
+   "why": "dark-background path must still read case correctly",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_039",
+    "warning_status": "v_titlecase",
+    "degradation": "dark",
+    "font_family": "Times New Roman",
+    "dark_background": true,
+    "expected_record_match": true,
+    "warning_font_px": 39,
+    "gw_case": "title",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "PINE HOLLOW",
+    "class_type": "Barrel Aged Applejack",
+    "abv": "42% Alc./Vol. (84 Proof)",
+    "net_contents": "500 mL"
+   }
+  },
+  "label_045.jpg": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "tightened",
+   "why": "measured ratio 1.047 → FAIL, but jpeg noise is real",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_045",
+    "warning_status": "v_allbold",
+    "degradation": "jpeg",
+    "font_family": "Courier New",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 27,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": true,
+    "brand": "BLACK-ROCK RESERVE",
+    "class_type": "Single Malt Whiskey",
+    "abv": "46% Alc./Vol. (92 Proof)",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_026.png": {
+   "allowed": [
+    "green",
+    "amber"
+   ],
+   "forbidden": [
+    "red"
+   ],
+   "basis": "known_hard",
+   "why": "v_tiny (19 px) and perspective — worst word recall in the corpus at 0.6512, and the ladder has no 4-point rectification, so an amber here is expected rather than a defect. It is kept as a known_hard case for that reason. Green is not an error though: under the v_tiny carve-out above the only violation on this label is type size, so a red would be a wrong rejection and is the one verdict forbidden.",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_026",
+    "warning_status": "v_tiny",
+    "degradation": "persp",
+    "font_family": "Helvetica",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 19,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "SILVER CREEK",
+    "class_type": "Silver Tequila",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net_contents": "1 L"
+   }
+  },
+  "label_008.png": {
+   "allowed": [
+    "green",
+    "amber"
+   ],
+   "forbidden": [
+    "red"
+   ],
+   "basis": "known_hard",
+   "why": "v_tiny (21 px), compliant text and bold — sits inside the tiny-type abstain band by design",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_008",
+    "warning_status": "v_tiny",
+    "degradation": "clean",
+    "font_family": "Georgia",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 21,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "HARBOR LIGHT",
+    "class_type": "Caribbean Spiced Rum",
+    "abv": "35% Alc./Vol. (70 Proof)",
+    "net_contents": "1.75 L"
+   }
+  },
+  "label_037.png": {
+   "allowed": [
+    "green",
+    "amber"
+   ],
+   "forbidden": [
+    "red"
+   ],
+   "basis": "known_hard",
+   "why": "compliant, blur — sharpness 0.04, so the defocus gate abstains on bold by design. This is the case that proves amber is a feature: a compliant label the tool honestly cannot measure",
+   "derived_allowed": [
+    "green",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_037",
+    "warning_status": "compliant",
+    "degradation": "blur",
+    "font_family": "Arial",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 33,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "IRON GATE",
+    "class_type": "Kentucky Straight Rye Whiskey",
+    "abv": "50% Alc./Vol. (100 Proof)",
+    "net_contents": "375 mL"
+   }
+  },
+  "label_003.png": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "derived",
+   "why": "derived from ground truth by the mapping above",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_003",
+    "warning_status": "v_reworded",
+    "degradation": "clean",
+    "font_family": "Georgia",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 34,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "SMITH & SONS",
+    "class_type": "Blended Scotch Whisky",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net_contents": "700 mL"
+   }
+  },
+  "label_007.png": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "derived",
+   "why": "derived from ground truth by the mapping above",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_007",
+    "warning_status": "v_allbold",
+    "degradation": "clean",
+    "font_family": "Arial",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 33,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": true,
+    "brand": "IRON GATE",
+    "class_type": "Kentucky Straight Rye Whiskey",
+    "abv": "50% Alc./Vol. (100 Proof)",
+    "net_contents": "375 mL"
+   }
+  },
+  "label_012.png": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "derived",
+   "why": "derived from ground truth by the mapping above",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_012",
+    "warning_status": "v_missing2",
+    "degradation": "rot5",
+    "font_family": "Arial",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 36,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "STONE'S THROW",
+    "class_type": "London Dry Gin",
+    "abv": "47% Alc./Vol. (94 Proof)",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_014.png": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "derived",
+   "why": "derived from ground truth by the mapping above",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_014",
+    "warning_status": "v_notbold",
+    "degradation": "rot5",
+    "font_family": "Times New Roman",
+    "dark_background": false,
+    "expected_record_match": false,
+    "warning_font_px": 36,
+    "gw_case": "caps",
+    "gw_bold": false,
+    "body_bold": false,
+    "brand": "CUVÉE ROYALE",
+    "class_type": "Napa Valley Cabernet Sauvignon",
+    "abv": "13.5% Alc./Vol.",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_017.png": {
+   "allowed": [
+    "green",
+    "amber"
+   ],
+   "forbidden": [
+    "red"
+   ],
+   "basis": "derived",
+   "why": "v_tiny carve-out: the only violation here is 18 px type, and type size is not verifiable from an uncalibrated photograph (16.22(b) is informational only, §1/§15.1). The text, capitals and bold on this label are all compliant, so a green is the correct reading and a red would reject a label for something the tool does not measure. rot15 may still cost it an amber.",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_017",
+    "warning_status": "v_tiny",
+    "degradation": "rot15",
+    "font_family": "Arial",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 18,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "IRON GATE",
+    "class_type": "Kentucky Straight Rye Whiskey",
+    "abv": "50% Alc./Vol. (100 Proof)",
+    "net_contents": "375 mL"
+   }
+  },
+  "label_020.png": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "derived",
+   "why": "derived from ground truth by the mapping above",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_020",
+    "warning_status": "v_reworded",
+    "degradation": "rot15",
+    "font_family": "Courier New",
+    "dark_background": true,
+    "expected_record_match": true,
+    "warning_font_px": 25,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "RED FEATHER",
+    "class_type": "Sonoma Coast Pinot Noir",
+    "abv": "14.1% Alc./Vol.",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_027.png": {
+   "allowed": [
+    "green",
+    "amber"
+   ],
+   "forbidden": [
+    "red"
+   ],
+   "basis": "derived",
+   "why": "v_tiny carve-out: the only violation here is 18 px type, and type size is not verifiable from an uncalibrated photograph (16.22(b) is informational only, §1/§15.1). The text, capitals and bold on this label are all compliant, so a green is the correct reading and a red would reject a label for something the tool does not measure. Glare may still cost it an amber.",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_027",
+    "warning_status": "v_tiny",
+    "degradation": "glare",
+    "font_family": "Arial",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 18,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "IRON GATE",
+    "class_type": "Kentucky Straight Rye Whiskey",
+    "abv": "50% Alc./Vol. (100 Proof)",
+    "net_contents": "375 mL"
+   }
+  },
+  "label_030.png": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "derived",
+   "why": "derived from ground truth by the mapping above",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_030",
+    "warning_status": "v_reworded",
+    "degradation": "glare",
+    "font_family": "Courier New",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 25,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "RED FEATHER",
+    "class_type": "Sonoma Coast Pinot Noir",
+    "abv": "14.1% Alc./Vol.",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_036.png": {
+   "allowed": [
+    "green",
+    "amber"
+   ],
+   "forbidden": [
+    "red"
+   ],
+   "basis": "derived",
+   "why": "v_tiny carve-out: the only violation here is 19 px type, and type size is not verifiable from an uncalibrated photograph (16.22(b) is informational only, §1/§15.1). The text, capitals and bold on this label are all compliant, so the verdict that must never appear is a red; blur costs it an amber in practice.",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_036",
+    "warning_status": "v_tiny",
+    "degradation": "blur",
+    "font_family": "Helvetica",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 19,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "SILVER CREEK",
+    "class_type": "Silver Tequila",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net_contents": "1 L"
+   }
+  },
+  "label_042.png": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "derived",
+   "why": "derived from ground truth by the mapping above",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_042",
+    "warning_status": "v_missing",
+    "degradation": "dark",
+    "font_family": "Arial",
+    "dark_background": false,
+    "expected_record_match": false,
+    "warning_font_px": 0,
+    "gw_case": null,
+    "gw_bold": false,
+    "body_bold": false,
+    "brand": "STONE'S THROW",
+    "class_type": "London Dry Gin",
+    "abv": "47% Alc./Vol. (94 Proof)",
+    "net_contents": "750 mL"
+   }
+  },
+  "label_050.jpg": {
+   "allowed": [
+    "amber",
+    "red"
+   ],
+   "forbidden": [
+    "green"
+   ],
+   "basis": "derived",
+   "why": "derived from ground truth by the mapping above",
+   "derived_allowed": [
+    "red",
+    "amber"
+   ],
+   "ground_truth": {
+    "record_id": "label_050",
+    "warning_status": "v_missing2",
+    "degradation": "jpeg",
+    "font_family": "Courier New",
+    "dark_background": false,
+    "expected_record_match": true,
+    "warning_font_px": 25,
+    "gw_case": "caps",
+    "gw_bold": true,
+    "body_bold": false,
+    "brand": "RED FEATHER",
+    "class_type": "Sonoma Coast Pinot Noir",
+    "abv": "14.1% Alc./Vol.",
+    "net_contents": "750 mL"
+   }
+  }
+ }
+}

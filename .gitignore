@@ -1,0 +1,22 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+node_modules/
+dist/
+spike/corpus/
+spike/out/
+*.log
+
+# Runtime state: uploads, crops and the SQLite database. Never committed — it holds
+# submitted label images, and it is purged hourly in production anyway (§8.3).
+.data/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Local environment overrides for LABELCHECK_* knobs.
+.env
+spike/corpus_stress/
